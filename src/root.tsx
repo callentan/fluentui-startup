@@ -6,7 +6,7 @@ import { Router } from "react-router-dom";
 import { History } from "history";
 import { StoreState } from "./redux/state/store-state";
 import { Action } from "./redux/actions/actions";
-import { App } from "./app";
+import App from "./app";
 
 interface Props {
   store: Store<StoreState, Action>;
@@ -16,7 +16,6 @@ interface Props {
 class Root extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    console.log(this.props.history);
   }
 
   render() {

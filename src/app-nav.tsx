@@ -59,20 +59,10 @@ const navButtonHeader = _.merge({}, navButtonStyles, {
   },
 });
 
-export interface AppNavProps {
-  expanded: boolean;
-  updateExpanded: (value: boolean) => void;
-}
+export const AppNav: React.FC = () => {
+  const [expanded, updateExpanded] = React.useState(true);
 
-interface OwnProps {
-  match: any;
-}
-
-type Props = AppNavProps & OwnProps;
-
-export const AppNav: React.FC<Props> = (props: Props) => {
-  const { match, expanded, updateExpanded } = props;
-  const encodedRoute = match.params.catalog;
+  const encodedRoute = "mailNotify";
   const buttonStyles = expanded ? navButtonStyles : navButtonIconOnlyStyles;
   const buttonSelectedStyles = expanded
     ? navButtonSelectedStyles
@@ -127,7 +117,7 @@ export const AppNav: React.FC<Props> = (props: Props) => {
                 title={expanded ? undefined : ButtonName.Parking}
                 ariaLabel={ButtonName.Parking}
                 styles={
-                  encodedRoute === "packing"
+                  encodedRoute === "mailNotify"
                     ? buttonSelectedStyles
                     : buttonStyles
                 }
@@ -143,7 +133,9 @@ export const AppNav: React.FC<Props> = (props: Props) => {
                 title={expanded ? undefined : ButtonName.Cards}
                 ariaLabel={ButtonName.Cards}
                 styles={
-                  encodedRoute === "cards" ? buttonSelectedStyles : buttonStyles
+                  encodedRoute === "mailNotify"
+                    ? buttonSelectedStyles
+                    : buttonStyles
                 }
               />
             </li>
