@@ -1,0 +1,16 @@
+#page-header-container {
+  width: 100%;
+}
+
+.page-header__separator {
+  height: 100%;
+  padding: 0 5px 0 5px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  vertical-align: middle;
+}
+
+#page-header-container .ms-OverflowSet-item ::after {
+  border: #ffffff solid 1px;
+}

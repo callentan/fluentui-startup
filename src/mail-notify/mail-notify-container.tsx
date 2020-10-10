@@ -10,7 +10,7 @@ class MailNotifyContainer extends React.Component<Props> {
 
   render() {
     const {} = this.props;
-    return <></>;
+    return <div>MailNotifyContainer</div>;
   }
 }
 

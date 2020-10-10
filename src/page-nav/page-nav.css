@@ -1,0 +1,22 @@
+#app-nav {
+  width: fit-content;
+  white-space: nowrap;
+  background-color: #f3f2f1;
+  color: #323130;
+  display: flex;
+}
+
+#app-nav ul {
+  list-style-type: none;
+  height: calc(100vh - 54px);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}

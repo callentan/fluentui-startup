@@ -6,9 +6,11 @@ import {
   IButtonStyles,
   Stack,
 } from "office-ui-fabric-react";
-import { ButtonName } from "./utils/ui-constant";
-import { Routes } from "./utils/routes";
-import history from "./utils/history";
+import { Link } from "react-router-dom";
+import { ButtonName } from "../utils/ui-constant";
+import { Routes } from "../utils/routes";
+
+import "./page-nav.css";
 
 const theme = getTheme();
 
@@ -59,23 +61,30 @@ const navButtonHeader = _.merge({}, navButtonStyles, {
   },
 });
 
-export const AppNav: React.FC = () => {
+interface AppNavProps {
+  match: any;
+}
+
+type Props = AppNavProps;
+
+export const AppNav: React.FC<Props> = (props: Props) => {
+  const { match } = props;
   const [expanded, updateExpanded] = React.useState(true);
 
-  const encodedRoute = "mailNotify";
+  const encodedRoute = match.params.catalog;
   const buttonStyles = expanded ? navButtonStyles : navButtonIconOnlyStyles;
   const buttonSelectedStyles = expanded
     ? navButtonSelectedStyles
     : navButtonSelectedIconOnlyStyles;
 
   return (
-    <nav id="lab-app-nav" role="navigation">
+    <nav id="app-nav" role="navigation">
       <Stack>
         <ul
           role="menu"
           aria-expanded={expanded}
           style={{
-            minWidth: expanded ? "400px" : undefined,
+            minWidth: expanded ? "300px" : undefined,
           }}
         >
           <Stack.Item styles={{ root: { borderBottom: "solid 1px #EDEBE9" } }}>
@@ -94,50 +103,62 @@ export const AppNav: React.FC = () => {
           </Stack.Item>
           <Stack.Item styles={{ root: { marginTop: "20px" } }}>
             <li role="none">
-              <DefaultButton
-                role="menuitem"
-                onClick={() => history.push(Routes.catalogs("mailNotify"))}
-                text={expanded ? ButtonName.MailNotify : undefined}
-                title={expanded ? undefined : ButtonName.MailNotify}
-                ariaLabel={ButtonName.MailNotify}
-                styles={
-                  encodedRoute === "mailNotify"
-                    ? buttonSelectedStyles
-                    : buttonStyles
-                }
-              />
-            </li>
-          </Stack.Item>
-          <Stack.Item styles={{ root: { marginTop: "20px" } }}>
-            <li role="none">
-              <DefaultButton
-                role="menuitem"
-                onClick={() => history.push(Routes.catalogs("packing"))}
-                text={expanded ? ButtonName.Parking : undefined}
-                title={expanded ? undefined : ButtonName.Parking}
-                ariaLabel={ButtonName.Parking}
-                styles={
-                  encodedRoute === "mailNotify"
-                    ? buttonSelectedStyles
-                    : buttonStyles
-                }
-              />
+              <Link to={Routes.catalogs("mailNotify")}>
+                <DefaultButton
+                  role="menuitem"
+                  iconProps={{
+                    iconName: "Mail",
+                  }}
+                  text={expanded ? ButtonName.MailNotify : undefined}
+                  title={expanded ? undefined : ButtonName.MailNotify}
+                  ariaLabel={ButtonName.MailNotify}
+                  styles={
+                    encodedRoute === "mailNotify"
+                      ? buttonSelectedStyles
+                      : buttonStyles
+                  }
+                />
+              </Link>
             </li>
           </Stack.Item>
           <Stack.Item>
             <li role="none">
-              <DefaultButton
-                role="menuitem"
-                onClick={() => history.push(Routes.catalogs("cards"))}
-                text={expanded ? ButtonName.Cards : undefined}
-                title={expanded ? undefined : ButtonName.Cards}
-                ariaLabel={ButtonName.Cards}
-                styles={
-                  encodedRoute === "mailNotify"
-                    ? buttonSelectedStyles
-                    : buttonStyles
-                }
-              />
+              <Link to={Routes.catalogs("parking")}>
+                <DefaultButton
+                  role="menuitem"
+                  iconProps={{
+                    iconName: "Car",
+                  }}
+                  text={expanded ? ButtonName.Parking : undefined}
+                  title={expanded ? undefined : ButtonName.Parking}
+                  ariaLabel={ButtonName.Parking}
+                  styles={
+                    encodedRoute === "packing"
+                      ? buttonSelectedStyles
+                      : buttonStyles
+                  }
+                />
+              </Link>
+            </li>
+          </Stack.Item>
+          <Stack.Item>
+            <li role="none">
+              <Link to={Routes.catalogs("cards")}>
+                <DefaultButton
+                  role="menuitem"
+                  iconProps={{
+                    iconName: "PaymentCard",
+                  }}
+                  text={expanded ? ButtonName.Cards : undefined}
+                  title={expanded ? undefined : ButtonName.Cards}
+                  ariaLabel={ButtonName.Cards}
+                  styles={
+                    encodedRoute === "cards"
+                      ? buttonSelectedStyles
+                      : buttonStyles
+                  }
+                />
+              </Link>
             </li>
           </Stack.Item>
         </ul>
