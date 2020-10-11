@@ -10,7 +10,14 @@ class CardsContainer extends React.Component<Props> {
 
   render() {
     const {} = this.props;
-    return <div>CardsContainer</div>;
+    return (
+      <div id="cards-container">
+        <div id="cards-content">
+          <div id="cards-header">CardsContainer</div>
+          <div id="cards-body"></div>
+        </div>
+      </div>
+    );
   }
 }
 

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import {
   MailNotifyAction,
   MailNotifyActionType,
@@ -6,7 +5,8 @@ import {
 import { MailNotifyStore } from "../state/mail-store";
 
 const initialState: MailNotifyStore = {
-  lastUploadInfo: null,
+  lastUpload: null,
+  users: null,
 };
 
 export function mailNotifyReducer(
@@ -14,18 +14,34 @@ export function mailNotifyReducer(
   action: MailNotifyAction
 ) {
   switch (action.type) {
-    case MailNotifyActionType.GET_MAIL_NOTIFY:
+    case MailNotifyActionType.GET_LAST_UPLOAD_TIMESTAMP:
       return {
         ...state,
         loading: true,
       };
-    case MailNotifyActionType.GET_MAIL_NOTIFY_FINISHED:
+    case MailNotifyActionType.GET_LAST_UPLOAD_TIMESTAMP_FINISHED:
       return {
         ...state,
-        lastUploadInfo: action.data,
+        lastUpload: action.data,
         loading: false,
       };
-    case MailNotifyActionType.GET_MAIL_NOTIFY_ERROR:
+    case MailNotifyActionType.GET_LAST_UPLOAD_TIMESTAMP_ERROR:
+      return {
+        ...state,
+        error: action.error,
+      };
+    case MailNotifyActionType.GET_USERS:
+      return {
+        ...state,
+        loading: true,
+      };
+    case MailNotifyActionType.GET_USERS_FINISHED:
+      return {
+        ...state,
+        users: action.data,
+        loading: false,
+      };
+    case MailNotifyActionType.GET_USERS_ERROR:
       return {
         ...state,
         error: action.error,

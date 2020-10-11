@@ -3,21 +3,32 @@ import { ResponseBase, HttpMethod } from "../models/common";
 import { RouteParams } from "../../utils/routes";
 
 const isMock = true;
-const mailNotifyApiUrlMock = "/mock/mailNotify";
-const mailNotifyApiUrl = "/api/mailNotify";
+const mailNotifyApiUrlMock = "/mock/mailnotify";
+const mailNotifyApiUrl = "/api/mailnotify";
 
-export const getLastMailNotifyApi = isMock
+export const getLastUploadTimestampApi = isMock
   ? () => {
-      return fetch(`${mailNotifyApiUrlMock}/lastMailNotify`).then(function (
-        res
-      ) {
+      return fetch(`${mailNotifyApiUrlMock}/lastupload`).then(function (res) {
         return res.json();
       });
     }
   : () => {
       return createRequest<ResponseBase<any>>(
-        `${mailNotifyApiUrl}/lastMailNotify`
+        `${mailNotifyApiUrl}/lastupload`
       )();
+    };
+
+export const getUsersApi = isMock
+  ? (file: any) => {
+      return fetch(`${mailNotifyApiUrlMock}/users`).then(function (res) {
+        return res.json();
+      });
+    }
+  : (file: any) => {
+      return createRequest<ResponseBase<any>>(
+        `${mailNotifyApiUrl}/users`,
+        HttpMethod.POST
+      )(file);
     };
 
 function createRequest<T>(

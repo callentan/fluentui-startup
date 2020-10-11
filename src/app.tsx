@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { AppNav } from "./page-nav/page-nav";
 import { Routes } from "./utils/routes";
-import MailNotifyContainer from "./mail-notify/mail-notify-container";
 import ParkingContainer from "./parking/parking-container";
 import CardsContainer from "./cards/cards-container";
 import PageHeader from "./page-header/page-header";
+import { MailNotifyContainer } from "./mail-notify/mail-notify-container";
 
 import "./app.css";
 

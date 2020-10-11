@@ -1,5 +1,8 @@
+import { LastUpload, Users } from "../../data/models/mail-notify";
+
 export interface MailNotifyStoreInternal {
-    lastUploadInfo: any | null;
+  lastUpload: LastUpload | null;
+  users: Users[] | null;
 }
 
 export type MailNotifyStore = MailNotifyStoreInternal;

@@ -1,7 +1,7 @@
 import { MailNotifyStore } from './mail-store';
 
 interface StoreStateInternal {
-    mail: MailNotifyStore;
+    mailNotify: MailNotifyStore;
 }
 
 export type StoreState = StoreStateInternal;

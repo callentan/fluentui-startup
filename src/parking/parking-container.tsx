@@ -10,7 +10,14 @@ class ParkingContainer extends React.Component<Props> {
 
   render() {
     const {} = this.props;
-    return <div>ParkingContainer</div>;
+    return (
+      <div id="parking-container">
+        <div id="parking-content">
+          <div id="parking-header">ParkingContainer</div>
+          <div id="parking-body"></div>
+        </div>
+      </div>
+    );
   }
 }
 
